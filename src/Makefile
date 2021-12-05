@@ -59,10 +59,7 @@ LIBS= \
 ifeq ($(HAVE_OPENBLAS_CLAPACK), 1)
     CFLAGS += -I$(OPENBLAS_ROOT)/include
     LIBS += \
-        $(OPENBLAS_ROOT)/lib/libopenblas.a \
-        $(OPENBLAS_ROOT)/lib/liblapack.a \
-        $(OPENBLAS_ROOT)/lib/libblas.a \
-        $(OPENBLAS_ROOT)/lib/libf2c.a
+        $(OPENBLAS_ROOT)/lib/libopenblas.a -lgfortran
 endif
 
 ifeq ($(HAVE_MKL), 1)
