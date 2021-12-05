@@ -437,6 +437,8 @@ const char *KaldiRecognizer::MbrResult(CompactLattice &rlat)
             word["word"] = model_->word_syms_->Find(words[i]);
             word["start"] = samples_round_start_ / sample_frequency_ + (frame_offset_ + times[i].first) * 0.03;
             word["end"] = samples_round_start_ / sample_frequency_ + (frame_offset_ + times[i].second) * 0.03;
+            word["start_frame"] = samples_round_start_ / sample_frequency_ + (times[i].first) * 0.03;
+            word["end_frame"] = samples_round_start_ / sample_frequency_ + (times[i].second) * 0.03;
             word["conf"] = conf[i];
             obj["result"].append(word);
         }
@@ -569,6 +571,8 @@ const char *KaldiRecognizer::NbestResult(CompactLattice &clat)
             word["word"] = model_->word_syms_->Find(words[i]);
             word["start"] = samples_round_start_ / sample_frequency_ + (frame_offset_ + begin_times[i]) * 0.03;
             word["end"] = samples_round_start_ / sample_frequency_ + (frame_offset_ + begin_times[i] + lengths[i]) * 0.03;
+	    word["start_frame"] = samples_round_start_ / sample_frequency_ + (begin_times[i]) * 0.03;
+	    word["end_frame"] = samples_round_start_ / sample_frequency_ + (begin_times[i] + lengths[i]) * 0.03;
             entry["result"].append(word);
         }
         if (i)
